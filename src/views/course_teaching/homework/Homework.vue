@@ -41,7 +41,7 @@
                   下载所有的作业
               </a-button>
               <a-button type="primary" shape="round"  style="background-color: rgba(10, 189, 111, 0.849);" :size="size"
-                        @click="addHome">
+                        @click="editHome('')">
                   <AppstoreAddOutlined />
                   添加作业
               </a-button>

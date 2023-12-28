@@ -211,8 +211,6 @@ const resource = ref("1");
 const handleOk = e => {
     userid.value = getUserId();
     role.value = getRoles();
-    displaya.value = false;
-    displayaa.value = false;
     emit("update:displayAdd", false)
     console.log(displaya)
     addFormState.ifPublish = delivery.value ? 1 : 0;
@@ -246,6 +244,7 @@ const handleOk = e => {
         },
         onCancel() {
             this.open = false;
+            displayaa.value = false;
             reset()
 
         },
