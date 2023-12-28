@@ -69,15 +69,15 @@
                       </a>
                    </div>
                    <div v-else="item.showpub"  style="float:right;">
-                      <a href="#" style="font-size: 26px;margin-right: 2vw;float: left;">
+                      <a style="font-size: 26px;margin-right: 2vw;float: left;" @click="JumpToHomeMark(item.homeworkId)">
                         {{ item.approved}}
                         <p style="font-size: 16px;color: black;margin-left:-1.3vw;">已批完</p>
                       </a>
-                      <a href="#" style="font-size: 26px;margin-right: 2vw;float: left;">
+                      <a  style="font-size: 26px;margin-right: 2vw;float: left;" @click="JumpToHomeMark(item.homeworkId)" >
                         {{ item.unapproved}}
                         <p style="font-size: 16px;color: black;margin-left:-1.3vw;">未批完</p>
                       </a>
-                      <a href="#" style="font-size: 26px;margin-right: 2vw;float: left;">
+                      <a style="font-size: 26px;margin-right: 2vw;float: left;" @click="JumpToHomeMark(item.homeworkId)">
                         {{ item.unpaid}}
                         <p style="font-size: 16px;color: black;margin-left:-0.7vw;">未交</p>
                       </a>
@@ -223,6 +223,15 @@ const JumpToHomeDetail = (e) => {
         name: 'NoticeDetail',
         query:{
             noticeid:e
+        }
+    })
+}
+const JumpToHomeMark = (e) => {
+    console.log("作业排行页面")
+    console.log("e：",e)
+    router.push({
+        name: 'Marking',
+        query:{
         }
     })
 }
