@@ -5,6 +5,7 @@
       <div class="header_up">
         <h1 class="course_name">{{courseInfo ? courseInfo.name : ''}}</h1>
         <h2 class="course_class">{{courseInfo ? courseInfo.teachClass : ''}}</h2>
+        <div class="course_member" @click="enterMember">成员管理</div>
         <div class="course_msg">
           <span> <QrcodeOutlined />  加课码 {{courseInfo ? courseInfo.code : ''}}&nbsp;&nbsp; </span>
           <span> 已有{{courseInfo ? courseInfo.joinNumber : ''}}人加入&nbsp;&nbsp; </span>
@@ -34,7 +35,7 @@ import {ref, reactive} from 'vue';
 import Header from "../components/Header.vue";
 import CourseTeaching from './course_teaching/index.vue'
 import StudentAnalysis from './study_analysis/index.vue'
-import { useRoute } from 'vue-router';
+import {useRoute, useRouter} from 'vue-router';
 import {getOneCourse} from "../api/course.js";
 import {userCourseId} from "../store/index.js";
 import {QrcodeOutlined} from "@ant-design/icons-vue";
@@ -67,17 +68,26 @@ const items = ref([
     label: '课程教学',
     title: '课程教学',
   },
-  {
-    key: '2',
-    label: '学情分析',
-    title: '学情分析',
-  },
+  // {
+  //   key: '2',
+  //   label: '学情分析',
+  //   title: '学情分析',
+  // },
 ]);
 // 处理菜单项点击事件
 const handleMenuClick = (item) => {
   // 根据点击的菜单项的 key 来切换 active 的值
   active.value = parseInt(item.key);
 };
+
+// 跳转去成员管理
+const router = useRouter();
+const enterMember = () => {
+  router.push({
+    name: 'MemberInfo',
+    query: {courseId}
+  });
+}
 
 </script>
 <style>
@@ -119,5 +129,11 @@ const handleMenuClick = (item) => {
   position: absolute;
   top: 31vh;
   left: 13vw;
+}
+.course_member{
+  color: white;
+  position: absolute;
+  top: 15vh;
+  right: 13vw;
 }
 </style>

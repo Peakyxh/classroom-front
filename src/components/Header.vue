@@ -28,7 +28,7 @@
 <!--    <div class="login_btn" @click="toLogin">-->
     <div class="login_btn">
       <a-dropdown :trigger="['click']">
-        <a style="font-size: 1rem; cursor: pointer;">登录</a>
+        <a style="font-size: 1rem; cursor: pointer;">{{username ? username : '登录'}}</a>
         <template #overlay>
           <a-menu style="width: 8vw; margin-left: 3vw">
             <a-menu-item key="0">
@@ -48,13 +48,14 @@
 </template>
 <script setup>
 import {useRouter, useRoute} from "vue-router";
-import {onMounted, reactive, watch} from "vue";
+import {onMounted, reactive, ref, watch} from "vue";
 import {userCourseId} from "@/store/index.js";
 import {SettingOutlined, DeleteOutlined} from "@ant-design/icons-vue";
 import {logout} from "@/api/login.js";
 import {ElMessage} from "element-plus";
 import {removeRoles, removeUserId} from "@/utils/user-utils.js";
 import {removeToken} from "@/utils/token-utils.js";
+import {userInfo} from "@/store/index.js";
 
 const router = useRouter();
 const toLogin = () => {
@@ -69,13 +70,14 @@ const state = reactive({
 onMounted(() => {
   let matched = route.matched  //获取菜单对应的路由信息
   state.list = matched
-  console.log("--------", state.list)
+  // console.log("--------", state.list)
 })
 
 watch(() => route.matched, (newVal, oldValue) => {
   let matched = newVal
   state.list = matched
-  console.log("========", state.list)   //更新路由菜单数组
+  //更新路由菜单数组
+  // console.log("========", state.list)
 })
 
 const toCourseId = userCourseId()
@@ -97,6 +99,11 @@ const handleLogout = () => {
     location.reload()
   })
 }
+
+// 获取当前用户信息
+const userInfoM = userInfo()
+const username = ref(null)
+username.value =userInfoM.getUsername()
 
 </script>
 <style>
