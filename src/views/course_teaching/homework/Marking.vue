@@ -64,26 +64,7 @@ const data = [
         num:'-',
         checknum:'0',
         score:'未交'
-    },{
-        key: '2',
-        name: 'kuku',
-        age: '默认标签',
-        similar: '-',
-        ifPush: '-',
-        num:'-',
-        checknum:'0',
-        score:'未交'
-    },
-    {
-        key: '3',
-        name: '测试',
-        age: '默认标签',
-        similar: '-',
-        ifPush: '已提交',
-        num:'-',
-        checknum:'1',
-        score:'5'
-    },
+    }
 ];
 </script>
 

@@ -31,7 +31,7 @@ export async function updateHomework(data) {
 }
 export async function deleteHomework(homeworkId) {
     return request({
-        url: '/classroom/homework/' + homeworkId,
+        url: '/classroom/homework/delete' + homeworkId,
         method: 'delete'
     })
 }
