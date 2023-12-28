@@ -117,14 +117,14 @@
         <br />
         <div>
           <h2>课程内容</h2>
-          <div style="margin-left: 2vw; cursor: pointer;"  @click="CreateResource()">
+          <div style="margin-left: 2vw; cursor: pointer;" @click="CreateResource()">
             <img src="@/assets/image/icon-data.svg" alt="资料" style="height: 5vh" />
             <div style="margin-left: 0.3vw">资料</div>
           </div>
         </div>
         <div style="margin-bottom: 10vh">
           <h2>课程活动</h2>
-          <div class="content_class" style="margin-left: 2vw">
+          <div class="content_class" style="margin-left: 2vw" @click="addHomework">
             <img src="@/assets/image/icon-homework.svg" alt="作业" style="height: 5vh" />
             <div style="margin-left: 0.3vw">作业</div>
           </div>
@@ -146,6 +146,7 @@
     </div>
   </div>
   <AddOrEditResource v-if="openSelect1" :openCreate="openSelect1" @updateOpenAdd="updateOpen"/>
+  <AddHomework v-if="displayAdd" :displayAdd=displayAdd @update:displayAdd="handleUpdateDisplayAdd" :homeworkId="homeworkid" :form="addStateForm"></AddHomework>
 </template>
 <script setup>
 import {onMounted, reactive, ref, toRaw, watch} from 'vue';
@@ -157,12 +158,13 @@ import HomeContent from "@/components/chapter/HomeContent.vue";
 import TestContent from "@/components/chapter/TestContent.vue";
 import TopicContent from "@/components/chapter/TopicContent.vue";
 import {ADMIN, COMMON, HOMEWORK_CONTENT, RESOURCE_CONTENT, TEST_CONTENT, TOPIC_CONTENT} from "@/config/setting.js";
-import {getRoles} from "@/utils/user-utils.js";
+import {getRoles, getUserId} from "@/utils/user-utils.js";
 import {useRouter} from "vue-router";
 import { Modal } from "ant-design-vue";
 import mitter from "../../../main.js";
 import ResourceContent from "@/components/chapter/ResourceContent.vue";
 import AddOrEditResource from "@/components/resource/AddOrEditResource.vue";
+import AddHomework from "@/components/homework/AddHomework.vue";
 
 const toCourseId = userCourseId()
 
@@ -345,6 +347,25 @@ const CreateResource = () => {
   dialogVisible.value = false
   openSelect1.value = true;
 };
+
+// 添加作业
+const displayAdd = ref(false)
+const userid = ref()
+const role = ref()
+const addStateForm = ref({})
+const homeworkid = ref("")
+const addHomework = () => {
+  dialogVisible.value = false
+  displayAdd.value = false;
+  displayAdd.value = true;
+  userid.value = getUserId();
+  role.value = getRoles();
+  displayAdd.value = false;
+}
+const handleUpdateDisplayAdd = (value) => {
+  displayAdd.value = value;
+};
+
 </script>
 <style>
 .chapter_all{
