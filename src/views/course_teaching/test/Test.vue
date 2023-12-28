@@ -52,7 +52,7 @@
               <p style="display: inline-block;" v-if="item.testLabel==2">考试</p>
             </div>
 
-            <div v-if="item.publishDate == null" style="margin-left: 38vh; width: 75vh; height: 15vh; display: inline-block; position: absolute;">
+            <div v-if="item.publishDate == null" style="margin-left: 55.5vh; width: 75vh; height: 15vh; position: absolute;">
                 <div class="ant-dropdown-link" @click.prevent  style="float: right;margin-top: 1.25vh;cursor: pointer;">
                   <a-dropdown>
                   <a style="color: black;">
@@ -93,7 +93,9 @@
                   <p>发布</p>
                 </div>
             </div>
-              <div v-if="item.publishDate != null" style="margin-left: 38vh; width: 75vh; height: 15vh; display: inline-block; position: absolute;">
+
+
+              <div v-if="item.publishDate != null" style="margin-left: 30vh; width: 75vh; height: 15vh; display: inline-block; position: absolute;">
                 <div style="float: left; margin-top: 1.25vh;cursor: pointer;">
                   <div class="change" style="font-size: 3vh;">
                     <EyeOutlined/>
@@ -143,11 +145,12 @@
 
                   <p>未交</p>
                 </div>
-                <div style="float: left; margin: 2vh 0vh 0vh 1vh;">
+                <div style="float: left; margin: 2vh 0vh 0vh 6vh;">
                   <a-divider type="vertical" style="height: 60px; background-color: rgb(215, 215, 215)" />
                   <a-divider type="vertical" style="height: 60px; border-color: rgb(215, 215, 215)" dashed />
                 </div>
-                <div class="ant-dropdown-link" @click.prevent  style="float: left; margin-top: 1.25vh;cursor: pointer;">
+                <div @click.prevent  style=" margin-top: 1.25vh;cursor: pointer;
+                display: inline-block; position: absolute;width: 5vh;">
 
                   <a-dropdown>
                   <a style="color: black;">
@@ -260,7 +263,7 @@
                           :render-after-expand="false"
                           :props="treeProps"
                         >
-                        </el-tree-select>>
+                        </el-tree-select>
                       </a-form-item>
                     </b>
                     </div>
@@ -316,7 +319,7 @@
                         </b>
                       </div>
 
-                      <div v-if="item.publishDate != null">
+                      <!-- <div v-if="item.publishDate != null">
                         <b>
                           <a-form-item
                         style="margin: 2vh 0vh 0vh 3vh;"
@@ -332,7 +335,7 @@
                         <QuestionOutlined />
                       </a-form-item>
                         </b>
-                      </div>
+                      </div> -->
                     </a-form>
                   </a-modal>
               </div>
@@ -341,7 +344,7 @@
 
           </template>
           <template #avatar>
-            <a-avatar style="width: 7vh; height: 7vh ;" src="/src/assets/image/Testlogo.png" />
+            <a-avatar style="width: 7vh; height: 7vh ;" src="src/assets/image/test.png" />
             <p style="margin-top: 1vh; width: 7vh;margin-left: 0.5vh; ">测试</p>
           </template>
         </a-list-item-meta>
@@ -474,7 +477,7 @@ const handleOk = (id) => {
           // 处理成功响应
           
           testForm.value = {
-            testId:0,
+            testId:id,
             title: '',
             chapterId:'',
             typeLabel:'测试',
@@ -486,6 +489,7 @@ const handleOk = (id) => {
             course_id:'',
           };
         })
+        location.reload()
       return new Promise((resolve, reject) => {
         setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
       }).catch(() => console.log('Oops errors!'));
