@@ -5,7 +5,7 @@
         <!--  公告-->
         <div class="announce-box">
           <div class="announce-box-cont">
-            <span class="announce-box-cont-span">公告</span>
+            <span class="announce-box-cont-span">作业</span>
           </div>
           <!--          编辑的三个点下拉框-->
           <!--         <div class="el-dropdown">-->
@@ -159,6 +159,7 @@ import {getInfo} from "../../../api/login.js";
 import {addComment, deleteCommentNotice, getComment, getCommentListTotal} from "../../../api/comment.js";
 import ChildComponent from "/src/components/childComponent1.vue";
 import {ElMessage} from "element-plus";
+import {getOneHome} from "@/api/homework.js";
 
 const noticeDetail = ref({
   title: '',
@@ -192,7 +193,7 @@ const commentform = reactive({
 
 const commentList = ref(null)
 onMounted(() => {
-  getNoticeDetail(id)
+  getHomeDetail(id)
   getCommentAll(id)
   getInfo().then(res => {
     user.value = res.user.nickName
@@ -202,8 +203,8 @@ onMounted(() => {
 })
 // console.log("userNickName:",user.value.user)
 
-const getNoticeDetail = (id) => {
-  getOneNotice(id).then((res) => {
+const getHomeDetail = (id) => {
+  getOneHome(id).then((res) => {
     console.log(res)
     noticeDetail.value.title = res.title;
     noticeDetail.value.content = res.content;

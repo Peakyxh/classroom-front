@@ -13,7 +13,8 @@ import Login from "../views/login.vue"
 import {getToken} from "@/utils/token-utils.js";
 import {WHITE_LIST,LAYOUT_PATH } from "@/config/setting.js";
 import AddHomework from "../components/homework/AddHomework.vue";
-import HomeDetail from "@/views/course_teaching/homework/HomeDetail.vue";
+import HomeDetail from "../views/course_teaching/homework/HomeDetail.vue";
+import Marking from "../views/course_teaching/homework/Marking.vue";
 const routes = [
 
     {
@@ -85,9 +86,13 @@ const routes = [
         component: AddHomework
     },
     {
-        path:'/HomeDetail',
+        path:'/homeDetail',
         name:'HomeDetail',
         component: HomeDetail
+    },{
+        path: '/marking',
+        name: 'Marking',
+        component: Marking
     }
 
 ]
