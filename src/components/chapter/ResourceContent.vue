@@ -10,8 +10,8 @@
                 <a href="#" style="font-size: 16px;">{{item ? item.title : ''}}</a>
               </template>
               <template #avatar>
-                <a-avatar size="middle" src="src/assets/image/icon-homework.svg"></a-avatar>
-                <p style="margin-left: 0.1vw;font-size: 0.8rem;">测试</p>
+                <a-avatar size="middle" src="src/assets/image/icon-data.svg"></a-avatar>
+                <p style="margin-left: 0.1vw;font-size: 0.8rem;">资料</p>
               </template>
             </a-list-item-meta>
           </a-list-item>

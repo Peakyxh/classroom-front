@@ -105,10 +105,20 @@ export async function cancelCourse(courseId, isTop) {
     return Promise.reject(new Error(res?.msg))
 }
 
+// 退出课程
 export async function exitCourse(courseId) {
     const res = await request.get('/classroom/course/exit/'+courseId)
     if(res?.code === 200){
         return res?.msg
+    }
+    return Promise.reject(new Error(res?.msg))
+}
+
+// 得到课程成员
+export async function getMemberInfo(courseId) {
+    const res = await request.get('/classroom/course/member/'+courseId)
+    if(res?.code === 200){
+        return res
     }
     return Promise.reject(new Error(res?.msg))
 }

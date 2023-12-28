@@ -22,6 +22,7 @@ export const userInfo = defineStore('userInfo', {
         name: '',
         avatar: '',
         roles: [],
+        username: '',
         permissions: []
     }),
     getters: {
@@ -40,6 +41,9 @@ export const userInfo = defineStore('userInfo', {
         getAvatar() {
             return this.avatar
         },
+        getUsername() {
+            return this.username
+        },
         getRoles() {
             return this.roles
         },
@@ -49,7 +53,8 @@ export const userInfo = defineStore('userInfo', {
         setUserInfo(data) {
             this.token = data?.token
             this.name = data?.name
-            this.avatar = data?.avatar
+            this.avatar = data?.user?.avatar
+            this.username = data?.user?.userName
             this.roles = data?.roles
             this.permissions = data?.permissions
         }
